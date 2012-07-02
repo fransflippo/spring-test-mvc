@@ -100,6 +100,10 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder {
 
 	private FlashMapManager flashMapManager = null;
 
+	private boolean useSuffixPatternMatch = true;
+	
+    private boolean useTrailingSlashPatternMatch = true;
+    
 	/**
 	 * Protected constructor. Not intended for direct instantiation.
 	 * @see MockMvcBuilders#standaloneSetup(Object...)
@@ -218,7 +222,25 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder {
 		return this;
 	}
 
-	@Override
+    /**
+     * Set the useSuffixPatternMatch value to be used for {@link RequestMappingHanderMapping} instances this
+     * builder creates.
+     * The default is <code>true</code>.
+     */
+	public void setUseSuffixPatternMatch(boolean useSuffixPatternMatch) {
+        this.useSuffixPatternMatch = useSuffixPatternMatch;
+    }
+
+    /**
+     * Set the useTrailingSlashPatternMatch value to be used for {@link RequestMappingHanderMapping} instances this
+     * builder creates.
+     * The default is <code>true</code>.
+     */
+    public void setUseTrailingSlashPatternMatch(boolean useTrailingSlashPatternMatch) {
+        this.useTrailingSlashPatternMatch = useTrailingSlashPatternMatch;
+    }
+
+    @Override
 	protected ServletContext initServletContext() {
 		return new MockServletContext();
 	}
@@ -320,6 +342,8 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder {
 		@Override
 		public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 			StaticRequestMappingHandlerMapping handlerMapping = new StaticRequestMappingHandlerMapping();
+			handlerMapping.setUseSuffixPatternMatch(useSuffixPatternMatch);
+            handlerMapping.setUseTrailingSlashMatch(useTrailingSlashPatternMatch);
 			handlerMapping.registerHandlers(StandaloneMockMvcBuilder.this.controllers);
 			handlerMapping.setOrder(0);
 			handlerMapping.setInterceptors(getInterceptors());
