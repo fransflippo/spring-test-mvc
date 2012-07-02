@@ -102,7 +102,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder {
 
 	private boolean useSuffixPatternMatch = true;
 	
-    private boolean useTrailingSlashPatternMatch = true;
+	private boolean useTrailingSlashPatternMatch = true;
     
 	/**
 	 * Protected constructor. Not intended for direct instantiation.
@@ -222,25 +222,25 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder {
 		return this;
 	}
 
-    /**
-     * Set the useSuffixPatternMatch value to be used for {@link RequestMappingHanderMapping} instances this
-     * builder creates.
-     * The default is <code>true</code>.
-     */
+	/**
+	 * Set the useSuffixPatternMatch value to be used for {@link RequestMappingHanderMapping} instances this
+	 * builder creates.
+	 * The default is <code>true</code>.
+	 */
 	public void setUseSuffixPatternMatch(boolean useSuffixPatternMatch) {
-        this.useSuffixPatternMatch = useSuffixPatternMatch;
-    }
+		this.useSuffixPatternMatch = useSuffixPatternMatch;
+	}
 
-    /**
-     * Set the useTrailingSlashPatternMatch value to be used for {@link RequestMappingHanderMapping} instances this
-     * builder creates.
-     * The default is <code>true</code>.
-     */
-    public void setUseTrailingSlashPatternMatch(boolean useTrailingSlashPatternMatch) {
-        this.useTrailingSlashPatternMatch = useTrailingSlashPatternMatch;
-    }
+	/**
+	 * Set the useTrailingSlashPatternMatch value to be used for {@link RequestMappingHanderMapping} instances this
+	 * builder creates.
+	 * The default is <code>true</code>.
+	 */
+	public void setUseTrailingSlashPatternMatch(boolean useTrailingSlashPatternMatch) {
+		this.useTrailingSlashPatternMatch = useTrailingSlashPatternMatch;
+	}
 
-    @Override
+	@Override
 	protected ServletContext initServletContext() {
 		return new MockServletContext();
 	}
@@ -343,7 +343,7 @@ public class StandaloneMockMvcBuilder extends AbstractMockMvcBuilder {
 		public RequestMappingHandlerMapping requestMappingHandlerMapping() {
 			StaticRequestMappingHandlerMapping handlerMapping = new StaticRequestMappingHandlerMapping();
 			handlerMapping.setUseSuffixPatternMatch(useSuffixPatternMatch);
-            handlerMapping.setUseTrailingSlashMatch(useTrailingSlashPatternMatch);
+			handlerMapping.setUseTrailingSlashMatch(useTrailingSlashPatternMatch);
 			handlerMapping.registerHandlers(StandaloneMockMvcBuilder.this.controllers);
 			handlerMapping.setOrder(0);
 			handlerMapping.setInterceptors(getInterceptors());
